@@ -22,5 +22,5 @@ def place_queens(placed, current_piece, future_queens):
 
     return placed
 
-
-print(place_queens([0, 0, 0, 0, 0, 0, 0, 0], 0, 0))
+if __name__ == "__main__":
+    print(place_queens([0, 0, 0, 0, 0, 0, 0, 0], 0, 0))
