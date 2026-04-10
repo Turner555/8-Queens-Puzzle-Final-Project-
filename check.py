@@ -16,6 +16,7 @@ def place_queens(placed, current_piece, future_queens):
     validity = check(placed, column, row)
     if validity is True:
          placed[column] = row
+         print("This is a valid placement!")
     else:
          print("This placement is not valid")
 
