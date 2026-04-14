@@ -9,18 +9,6 @@ def check(placed, column, row):
                     return False
         return True
 
-"""
-def possible_placements(placed, column, row):
-    while row < 10:
-        validity = check(placed, column, row)
-        if validity == True:
-            placed[column] = row
-            possible_placements(placed, column + 1, row)
-        elif validity == False:
-            possible_placements(placed, column, row + 1)
-        
-        return placed
-"""
 def possible_placements(placed, column, possibilities):
     if column == 8:
         return 1
@@ -28,14 +16,17 @@ def possible_placements(placed, column, possibilities):
     if placed[column] != 0:
         return possible_placements(placed, column + 1, possibilities)
     
+    outcomes = 0
     this_row = []
     for row in range(1, 9):
         if check(placed, column, row):
             this_row.append(row)
-    possibilities[column] = this_row
-    this_row = []
-    possible_placements(placed, column + 1, possibilities)
-    return possibilities
+            placed[column] = row
+            outcomes += possible_placements(placed, column + 1, possibilities)
+            placed[column] = 0
+
+    possibilities[column] = this_row        
+    return outcomes
 
 
 def place_queens(placed, current_piece):
@@ -49,14 +40,16 @@ def place_queens(placed, current_piece):
          print("This placement is not valid")
     
     possibilities = [0, 0, 0, 0, 0, 0, 0, 0]
+   
     # Get a column for the possibility check
     check_for_next = []
     for c in range(len(placed)):
         if placed[c] == 0:
             check_for_next.append(c)
             break
-    possible_placements(placed, check_for_next[0], possibilities)
+    total_solutions = possible_placements(placed, check_for_next[0], possibilities)
 
+    print(f"Total remaining solutions: {total_solutions}")
     return placed
 
 if __name__ == "__main__":
