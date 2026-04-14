@@ -9,6 +9,7 @@ def check(placed, column, row):
                     return False
         return True
 
+"""
 def possible_placements(placed, column, row):
     while row < 10:
         validity = check(placed, column, row)
@@ -17,9 +18,25 @@ def possible_placements(placed, column, row):
             possible_placements(placed, column + 1, row)
         elif validity == False:
             possible_placements(placed, column, row + 1)
-
+        
         return placed
-        break
+"""
+def possible_placements(placed, column, possibilities):
+    if column == 8:
+        return 1
+    
+    if placed[column] != 0:
+        return possible_placements(placed, column + 1, possibilities)
+    
+    this_row = []
+    for row in range(1, 9):
+        if check(placed, column, row):
+            this_row.append(row)
+    possibilities[column] = this_row
+    this_row = []
+    possible_placements(placed, column + 1, possibilities)
+    return possibilities
+
 
 def place_queens(placed, current_piece):
     current_piece = input("What colum and row have you placed the queen on (e.g. 1 3): ")
@@ -30,13 +47,15 @@ def place_queens(placed, current_piece):
          placed[column] = row
     else:
          print("This placement is not valid")
+    
+    possibilities = [0, 0, 0, 0, 0, 0, 0, 0]
     # Get a column for the possibility check
     check_for_next = []
     for c in range(len(placed)):
         if placed[c] == 0:
             check_for_next.append(c)
             break
-    possible_placements(placed, check_for_next[0])
+    possible_placements(placed, check_for_next[0], possibilities)
 
     return placed
 
