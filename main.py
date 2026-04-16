@@ -11,20 +11,28 @@ def main(placed):
     result = placement(placed, column, row)
     print(result)
     if result[1] > 0 and result[1] != 100:
-        print("You are on the right track")
+        print(f"You are on the right track. There are {result[1]} possible solutions left.")
+        print("Please place your next queen.")
         main(placed)
 
     elif result[1] == 0:
-        print("Uh oh! dead end")
+        print("Oh no! This leads to a dead end.")
+        print("Please re-place your last queen.")
         main(placed)
 
     elif result[1] == -1:
-        print("Conflicts with board")
+        print("Yikes! THis placement conflicts with queens already on the board")
+        print("Please re-place your last queen.")
         main(placed)
 
     elif result[1] == 100:
-        print("You won!")
-
+        print("Congrats on finding a way to complete the standoff!")
+        print("Would you like to try another route.")
+        again = input("y/n: ")
+        if again == 'y':
+            main([0, 0, 0, 0, 0, 0, 0, 0])
+        elif again == 'n':
+            return -1
 
 print("Hello, and welcome to The Royal Standoff!")
 print("To begin, please place your first queen.")
