@@ -4,8 +4,18 @@ def main(placed):
     #Get placement of queen from user
     current_piece = input("What colum and row have you placed the queen on (e.g. 1 3): ")
     column = (int(current_piece.split()[0]) - 1)
+    #Guard against invalid column.
+    if column < 0 or column > 7:
+        print("Oops, it looks like this is not a valid column. Please re-enter a column and row between 1 and 8.")
+        print(placed)
+        main(placed)
     row = int(current_piece.split()[1])
-    
+    #Guard against invalid row.
+    if row < 1 or row > 8:
+        print("Oops, it looks like this is not a valid row. Please re-enter a column and row between 1 and 8.")
+        print(placed)
+        main(placed)
+
     #Check validity of placement
     result = place_queens(placed, column, row)
     print(result)
