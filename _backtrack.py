@@ -9,23 +9,20 @@ def check(placed, column, row):
                     return False
         return True
 
-def possible_placements(placed, column, possibilities):
+def possible_placements(placed, column):
     if column == 8:
         return 1
     
     if placed[column] != 0:
-        return possible_placements(placed, column + 1, possibilities)
+        return possible_placements(placed, column + 1)
     
     outcomes = 0
-    this_row = []
     for row in range(1, 9):
         if check(placed, column, row):
-            this_row.append(row)
             placed[column] = row
-            outcomes += possible_placements(placed, column + 1, possibilities)
+            outcomes += possible_placements(placed, column + 1)
             placed[column] = 0
-
-    possibilities[column] = this_row        
+       
     return outcomes
 
 
@@ -39,15 +36,13 @@ def place_queens(placed, current_piece):
     else:
          print("This placement is not valid")
     
-    possibilities = [0, 0, 0, 0, 0, 0, 0, 0]
-   
     # Get a column for the possibility check
     check_for_next = []
     for c in range(len(placed)):
         if placed[c] == 0:
             check_for_next.append(c)
             break
-    total_solutions = possible_placements(placed, check_for_next[0], possibilities)
+    total_solutions = possible_placements(placed, check_for_next[0])
 
     print(f"Total remaining solutions: {total_solutions}")
     return placed
