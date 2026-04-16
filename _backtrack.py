@@ -44,11 +44,8 @@ def possible_placements(placed, column):
     return outcomes
 
 
-def place_queens(placed, current_piece):
-    current_piece = input("What colum and row have you placed the queen on (e.g. 1 3): ")
-    column = (int(current_piece.split()[0]) - 1)
-    row = int(current_piece.split()[1])
-    
+def place_queens(placed, column, row):
+        
     #Check conflicts between current placement and what is already on the board.
     validity = check(placed, column, row)
     
@@ -58,7 +55,7 @@ def place_queens(placed, current_piece):
     
     #If the placement conflicts with already placed pieces, don't run the recursion and ask for a different placement.
     else:
-         print("This placement is not valid")
+         return [placed, -1]
     
     #Find the first empty column to start the recursion at.
     check_for_next = []
@@ -66,13 +63,19 @@ def place_queens(placed, current_piece):
         if placed[c] == 0:
             check_for_next.append(c)
             break
-    
+       #Tell the user if they won.
+        elif 0 not in placed:
+            return [placed, 100]
+
     #Define total_solutions as the result of the recursion.
     total_solutions = possible_placements(placed, check_for_next[0])
 
-    print(f"Total remaining solutions: {total_solutions}")
-    
-    return placed
+    #Gaurd against no more solutions.
+    if total_solutions == 0:
+        placed[column] = 0
+        return [placed, -1]     
+       
+    return [placed, total_solutions]
 
 if __name__ == "__main__":
-    print(place_queens([0, 0, 0, 0, 0, 0, 0, 0], 0))
+    print(place_queens([0, 0, 0, 0, 0, 0, 0, 0], 0, 3))
