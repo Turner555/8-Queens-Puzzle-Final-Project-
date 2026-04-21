@@ -54,7 +54,7 @@ def place_queens(placed, column, row):
          placed[column] = row
     
     #If the placement conflicts with already placed pieces, don't run the recursion and ask for a different placement.
-    else:
+    elif validity is False:
          return [placed, -1]
     
     #Find the first empty column to start the recursion at.
@@ -73,9 +73,11 @@ def place_queens(placed, column, row):
     #Gaurd against no more solutions.
     if total_solutions == 0:
         placed[column] = 0
-        return [placed, -1]     
+        return [placed, 0]     
        
     return [placed, total_solutions]
 
 if __name__ == "__main__":
-    print(place_queens([0, 0, 0, 0, 0, 0, 0, 0], 0, 3))
+    placed = [0, 0, 0, 0, 0, 0, 0, 0]
+    print(place_queens(placed, 0, 1))
+    print(place_queens(placed, 1, 3))
