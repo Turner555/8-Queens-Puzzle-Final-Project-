@@ -39,7 +39,7 @@ def main(placed):
 
     #Re-do last placement if it conflicts with the queens already on the board.
     elif result[1] == -1:
-        print("Yikes! THis placement conflicts with queens already on the board")
+        print("\n\nYikes! THis placement conflicts with queens already on the board")
         print("Please re-place your last queen.")
         #Make a visual board in GUI
         make_board(placed, 1, 0)
@@ -47,7 +47,7 @@ def main(placed):
 
     #Let user know they completed the puzzle and ask if they want to go again.
     elif result[1] == 100:
-        print("Congrats on finding a way to complete the standoff!")
+        print("\n\nCongrats on finding a way to complete the standoff!")
         #Make a visual board in GUI
         make_board(placed, 1, 0)
         print("\nWould you like to try another route?")
