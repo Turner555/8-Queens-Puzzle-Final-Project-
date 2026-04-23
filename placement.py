@@ -16,6 +16,7 @@ def check(placed, column, row):
                     return False
         return True
 
+#Used https://youtu.be/L0NxT2i-LOY?si=KMBH0Y9OhjDxQcHX to learn about backtracking and how to check all possible solutions. Also used minimal AI help in debugging.
 def possible_placements(placed, column):
     #Base case.
     if column == 8:

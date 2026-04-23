@@ -1,8 +1,11 @@
+"""
+For the board I learned about ANSI escape codes using https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+48->background 38->text color 188->off-white 94->brown 83->green
+"""
+
 #Split board into even and odd rows
 even_row = ["\x1b[48;5;188m   \x1b[0m", "\x1b[48;5;94m   \x1b[0m"] * 4
 odd_row = ["\x1b[48;5;94m   \x1b[0m", "\x1b[48;5;188m   \x1b[0m"] * 4
-
-#47-white 44-blue
 
 def make_board(placed, row):
     #Base case

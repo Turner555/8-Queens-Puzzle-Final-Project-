@@ -1,13 +1,13 @@
-from _backtrack import place_queens
+from placement import place_queens
 from board import make_board
-from inputcheck import intcheck, responsecheck
+from input_check import int_check, response_check
 
 def main(placed):
     #Get placement of queen from user
     current_piece = input("What colum and row do you want to place the queen on (ex. 1 3): ")
     
     #Check whether the user inputed column and row correctly
-    col_row = intcheck(current_piece)
+    col_row = int_check(current_piece)
     
     column = (int(col_row[0]) - 1)
     
@@ -48,14 +48,14 @@ def main(placed):
         make_board(placed, 1)
         print("\nWould you like to try another route?")
         again = input("y/n: ")
-        answer = responsecheck(again)
+        answer = response_check(again)
         if answer == 'y':
            return main([0, 0, 0, 0, 0, 0, 0, 0])
         elif answer == 'n':
             return -1
 
 #Intro and initial call into the program
-print("Hello, and welcome to The Royal Standoff!\n")
+print("\nHello, and welcome to The Royal Standoff!\n")
 print("To begin, please place your first queen.\n")
 board = [0, 0, 0, 0, 0, 0, 0, 0]
 #Make a visual board in GUI
