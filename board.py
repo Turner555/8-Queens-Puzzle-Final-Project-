@@ -1,6 +1,8 @@
 #Split board into even and odd rows
-even_row = ["[ ]", "[/]"] * 4
-odd_row = ["[/]", "[ ]"] * 4
+even_row = ["\x1b[48;5;188m   \x1b[0m", "\x1b[48;5;94m   \x1b[0m"] * 4
+odd_row = ["\x1b[48;5;94m   \x1b[0m", "\x1b[48;5;188m   \x1b[0m"] * 4
+
+#47-white 44-blue
 
 def make_board(placed, row):
     #Base case
@@ -20,16 +22,19 @@ def make_board(placed, row):
                 if placed[column] == row:
                     
                     #Place queen on board
-                    even_row[column] = "[\x1b[1,31mQ]"
+                    if column % 2 == 0:
+                        even_row[column] = "\x1b[48;5;188m \x1b[38;5;83mQ \x1b[0m"
+                    else:
+                        even_row[column] = "\x1b[48;5;94m \x1b[38;5;83mQ \x1b[0m"
                     
                     #Print row and its elements
                     print(f"{row} {' '.join(even_row)}")
                     
                     #Put row back to original
                     if column % 2 == 0:
-                        even_row[column] = "[ ]"
+                        even_row[column] = "\x1b[48;5;188m   \x1b[0m"
                     else:
-                        even_row[column] = "[/]"
+                        even_row[column] = "\x1b[48;5;94m   \x1b[0m"
                     break
 
             #If dealing with odd row   
@@ -37,16 +42,19 @@ def make_board(placed, row):
                 if placed[column] == row:
                     
                     #Place queen on board
-                    odd_row[column] = "[Q]"
+                    if column % 2 == 0:
+                        odd_row[column] = "\x1b[48;5;94m \x1b[38;5;83mQ \x1b[0m"
+                    else:
+                        odd_row[column] = "\x1b[48;5;188m \x1b[38;5;83mQ \x1b[0m"
                     
                     #Print column and its elements
                     print(f"{row} {' '.join(odd_row)}")
                     
                     #Put row back to original
                     if column % 2 == 0:
-                        odd_row[column] = "[/]"
+                        odd_row[column] = "\x1b[48;5;94m   \x1b[0m"
                     else:
-                        odd_row[column] = "[ ]"
+                        odd_row[column] = "\x1b[48;5;188m   \x1b[0m"
                     break
     
     #If there are no queens in the current row

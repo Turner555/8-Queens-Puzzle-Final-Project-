@@ -26,7 +26,7 @@ def main(placed):
         print(f"\n\nYou are on the right track! There are {result[1]} possible solutions left.")
         print("Please place your next queen.")
         #Make a visual board in GUI
-        make_board(placed, 1, 0)
+        make_board(placed, 1)
         return main(placed)
 
     #Re-do last placement if there are no more valid solutions.
@@ -34,7 +34,7 @@ def main(placed):
         print("\n\nOh no! This leads to a dead end.")
         print("Please re-place your last queen.")
         #Make a visual board in GUI
-        make_board(placed, 1, 0)
+        make_board(placed, 1)
         return main(placed)
 
     #Re-do last placement if it conflicts with the queens already on the board.
@@ -42,14 +42,14 @@ def main(placed):
         print("\n\nYikes! THis placement conflicts with queens already on the board")
         print("Please re-place your last queen.")
         #Make a visual board in GUI
-        make_board(placed, 1, 0)
+        make_board(placed, 1)
         return main(placed)
 
     #Let user know they completed the puzzle and ask if they want to go again.
     elif result[1] == 100:
         print("\n\nCongrats on finding a way to complete the standoff!")
         #Make a visual board in GUI
-        make_board(placed, 1, 0)
+        make_board(placed, 1)
         print("\nWould you like to try another route?")
         again = input("y/n: ")
         if again == 'y':
@@ -62,5 +62,5 @@ print("Hello, and welcome to The Royal Standoff!\n")
 print("To begin, please place your first queen.\n")
 board = [0, 0, 0, 0, 0, 0, 0, 0]
 #Make a visual board in GUI
-make_board(board, 1, 0)
+make_board(board, 1)
 main(board)
