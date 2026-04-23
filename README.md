@@ -31,7 +31,7 @@ Repeat until all eight queens are placed in valid positions.
 
 Step 1:
 
-Type python main.py into the terminal:
+Type python main.py into the terminal.
 
 Step 2:
 
